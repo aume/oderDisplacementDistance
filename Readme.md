@@ -31,17 +31,19 @@ The core algorithm, `order_displacement_dist`, works as follows:
 The algorithm also provides an output of the most displaced common items, ordered by their individual displacement values.
 
 ---
-Usage
-order_displacement_dist(a, b)
+## Usage
+`order_displacement_dist(a, b)`
+```python
 
-This function calculates the normalized displacement distance between two Python lists.
 
-from thorogood_dist_algorithm import order_displacement_dist
+# This function calculates the normalized displacement distance between two Python lists.
+
+from order_displacement_distance import order_displacement_dist
 
 a = ['a', 'b', 'c', 'd']
 b = ['a', 'd', 'c', 'b']
 
 distance = order_displacement_dist(a, b)
 print(f"Normalized Displacement Distance: {distance}")
-# Expected output for the given example would show a displacement for 'b', 'c', and 'd'
-# and print the overall normalized distance.
+#Expected output for the given example would show a displacement for 'b', 'c', and 'd' and print the overall normalized distance.
+```
