@@ -35,7 +35,6 @@ The algorithm also provides an output of the most displaced common items, ordere
 `order_displacement_dist(a, b)`
 ```python
 
-
 # This function calculates the normalized displacement distance between two Python lists.
 
 from order_displacement_distance import order_displacement_dist
