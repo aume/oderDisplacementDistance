@@ -1,12 +1,12 @@
 import pandas as pd
 
-# Import the thorogood_dist function from a module named 'thorogood_dist_algorithm'.
+# Import the order_displacement_dist function
 from order_displacement_distance import order_displacement_dist
 
-def read_csv_sort_list(filename, order_by):
+def read_csv_sort_list(filename, list_col, order_by):
     """
-    Reads a CSV file, extracts 'File' and a specified 'order_by' column,
-    sorts the data by the 'order_by' column, and returns 'File' column as a list.
+    Reads a CSV file, extracts list_col and a specified 'order_by' column,
+    sorts the data by the 'order_by' column, and returns list_col column as a list.
 
     Args:
         filename (str): The path to the CSV file.
@@ -16,19 +16,18 @@ def read_csv_sort_list(filename, order_by):
         list: A list of values from the 'File' column, sorted according to 'order_by'.
     """
     # Read the CSV file into a pandas DataFrame, selecting only the 'File'
-    # and the column specified by 'order_by'. This improves efficiency by
-    # not loading unnecessary columns.
-    df = pd.read_csv(filename, usecols=['File', order_by])
+    # and the column specified by 'order_by'. 
+    df = pd.read_csv(filename, usecols=[list_col, order_by])
 
     # Sort the DataFrame based on the values in the 'order_by' column.
     # This rearranges the rows of the DataFrame, and consequently the 'File'
-    # column, according to the order of the specified column.
+    # column
     df = df.sort_values(by=order_by)
 
     # Convert the 'File' column of the sorted DataFrame into a Python list
     # and return it. This list will be used as one of the inputs for the
-    # thorogood_dist function.
-    return df['File'].tolist()
+    # order_displacement_dist function.
+    return df[list_col].tolist()
 
 # Example usage with pre-defined lists, as present in your original script.
 # These lines demonstrate how thorogood_dist works with direct list inputs.
@@ -44,14 +43,14 @@ print("-" * 30)
 # The following lines demonstrate reading data from CSV files, sorting it,
 # and then applying the order_displacement_dist function to compare these lists.
 
-# Read the 'expert' list by loading 'Desolate.csv' and sorting by the 'Value' column.
-expert = read_csv_sort_list('./MiniCorpus/CSVFiles/Desolate.csv', 'Value')
-# Read the 'emo' list by loading 'emo_predicted_hld.csv' and sorting by the 'desolate' column.
-emo = read_csv_sort_list('./MiniCorpus/emo_predicted_hld.csv', 'desolate')
-# Read the 'hld' list by loading 'hld_desolate.csv' and sorting by the 'Value' column.
-hld = read_csv_sort_list('./MiniCorpus/hld_desolate.csv', 'Value')
-# Read the 'rand' list by loading 'random_chaotic.csv' and sorting by the 'Value' column.
-rand = read_csv_sort_list('./MiniCorpus/random_chaotic.csv', 'Value')
+# Read the 'expert' FIle list by loading 'Desolate.csv' and sorting by the 'Value' column.
+expert = read_csv_sort_list('./MiniCorpus/CSVFiles/Desolate.csv', 'File', 'Value')
+# Read the 'emo' File list by loading 'emo_predicted_hld.csv' and sorting by the 'desolate' column.
+emo = read_csv_sort_list('./MiniCorpus/emo_predicted_hld.csv', 'File', 'desolate')
+# Read the 'hld' File list by loading 'hld_desolate.csv' and sorting by the 'Value' column.
+hld = read_csv_sort_list('./MiniCorpus/hld_desolate.csv', 'File', 'Value')
+# Read the 'rand' File list by loading 'random_chaotic.csv' and sorting by the 'Value' column.
+rand = read_csv_sort_list('./MiniCorpus/random_chaotic.csv', 'File', 'Value')
 
 
 # Calculate and print the normalized displacement distance between the 'expert' list
